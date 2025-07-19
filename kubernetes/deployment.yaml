@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd-deployment
+  labels:
+    app: httpd
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: httpd
+  template:
+    metadata:
+      labels:
+        app: httpd
+    spec:
+      containers:
+      - name: httpd
+        image: 187249972779.dkr.ecr.us-east-1.amazonaws.com/my-ecr-repo:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
